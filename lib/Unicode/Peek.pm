@@ -100,6 +100,9 @@ __END__
     output and also vise versa. The user can provided an array of data in a hex
     format and convert it back to ascii. Perl version 5.13.2 or greater is required.
 
+
+=head1 SUBROUTINES/METHODS
+
     use Unicode::Peek ( 'ascii2hexEncode', 'hex2ascciiDecode',
                         'hexDumperOutput', 'hexDumperInput' );
 
