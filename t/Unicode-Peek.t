@@ -1,18 +1,28 @@
-# Before 'make install' is performed this script should be runnable with
-# 'make test'. After 'make install' it should work as 'perl Unicode-Peek.t'
-
 #########################
 
-# change 'tests => 1' to 'tests => last_test_to_print';
-
+use utf8;
 use strict;
 use warnings;
 
-use Test::More tests => 1;
-BEGIN { use_ok('Unicode::Peek') };
+use Test::More tests => 5;
+BEGIN { use_ok('Unicode::Peek', qw( :all )) };
 
 #########################
 
-# Insert your test code below, the Test::More module is use()ed here so read
-# its man page ( perldoc Test::More ) for help writing this test script.
+ok( ascii2hexEncode('UCS-2', '這是一個測試') eq
+    '9019662f4e00500b6e2c8a66',
+    'Ascii too Hex UCS-2' );
 
+ok( hex2ascciiDecode('UCS-2', '9019662f4e00500b6e2c8a66') eq
+    '這是一個測試',
+    'Hex to Ascii UCS-2' );
+
+my @hexOutput = ( '90 19 66 2f 4e 00 50 0b 6e 2c',
+		  '8a 66' );
+
+is_deeply( hexDumperOutput('UCS-2', '這是一個測試' ),
+	   \@hexOutput, 'Array comparison' );
+
+ok( hexDumperInput('UCS-2', \@hexOutput ) eq
+    '這是一個測試',
+    'Hex to Ascii UCS-2 hexDumperInput');
