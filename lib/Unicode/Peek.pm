@@ -172,6 +172,7 @@ __END__
 =back
 
 =head1 EXAMPLE 1 (hexDumperOutput)
+
 =encoding utf8
 
     This example is for femonstration purposes, randomly choosen Chinese as a testing
@@ -180,105 +181,105 @@ __END__
 
     #!/usr/bin/perl
     use utf8;
-use strict;
-use warnings;
-use Data::Dumper;
+    use strict;
+    use warnings;
+    use Data::Dumper;
 
-use Unicode::Peek qw( hexDumperOutput );
+    use Unicode::Peek qw( hexDumperOutput );
 
-my $lanquage = 'Chinese';
+    my $lanquage = 'Chinese';
 
-my $str = '這是一個測試';
+    my $str = '這是一個測試';
 
-my @flags = ( 'UCS-2',
-    'UCS-2BE',
-    'UCS-2LE',
-    'UCS-4',
-    'UTF-7',
-    'utf8',
-    'UTF-8',
-    'utf-8-strict',
-    'UTF-16',
-    'UTF-16BE',
-    'UTF-16LE',
-    'UTF-32',
-    'UTF-32BE',
-    'UTF-32LE' );
+    my @flags = ( 'UCS-2',
+                  'UCS-2BE',
+                  'UCS-2LE',
+                  'UCS-4',
+                  'UTF-7',
+                  'utf8',
+                  'UTF-8',
+                  'utf-8-strict',
+                  'UTF-16',
+                  'UTF-16BE',
+                  'UTF-16LE',
+                  'UTF-32',
+                  'UTF-32BE',
+                  'UTF-32LE' );
 
-while ( defined ( my $flag = shift @flags ) ) {
-    print Dumper hexDumperOutput($flag, $str);
-};
+    while ( defined ( my $flag = shift @flags ) ) {
+        print Dumper hexDumperOutput($flag, $str);
+    };
 
 =head1 EXAMPLE 2 (hexDumperInput)
 
     #!/usr/bin/perl
     use utf8;
-use strict;
-use warnings;
-use Data::Dumper;
-use feature 'say';
+    use strict;
+    use warnings;
+    use Data::Dumper;
+    use feature 'say';
 
-use Unicode::Peek qw( hexDumperOutput hexDumperInput );
+    use Unicode::Peek qw( hexDumperOutput hexDumperInput );
 
-my $lanquage = 'Chinese';
+    my $lanquage = 'Chinese';
 
-my $str = '這是一個測試';
+    my $str = '這是一個測試';
 
-my @flags = ( 'UCS-2',
-    'UCS-2BE',
-    'UCS-2LE',
-    'UCS-4',
-    'UTF-7',
-    'utf8',
-    'UTF-8',
-    'utf-8-strict',
-    'UTF-16',
-    'UTF-16BE',
-    'UTF-16LE',
-    'UTF-32',
-    'UTF-32BE',
-    'UTF-32LE' );
+    my @flags = ( 'UCS-2',
+                  'UCS-2BE',
+                  'UCS-2LE',
+                  'UCS-4',
+                  'UTF-7',
+                  'utf8',
+                  'UTF-8',
+                  'utf-8-strict',
+                  'UTF-16',
+                  'UTF-16BE',
+                  'UTF-16LE',
+                  'UTF-32',
+                  'UTF-32BE',
+                  'UTF-32LE' );
 
-while ( defined ( my $flag = shift @flags ) ) {
-    my $hexDumper = hexDumperOutput($flag, $str);
-print Dumper $hexDumper;
-say hexDumperInput($flag, $hexDumper);
-};
+    while ( defined ( my $flag = shift @flags ) ) {
+        my $hexDumper = hexDumperOutput($flag, $str);
+        print Dumper $hexDumper;
+        say hexDumperInput($flag, $hexDumper);
+    };
 
 
 =head1 EXAMPLE 3 (hex2ascciiDecode ascii2hexEncode)
 
     #!/usr/bin/perl
     use utf8;
-use strict;
-use warnings;
-use feature 'say';
+    use strict;
+    use warnings;
+    use feature 'say';
 
-use Unicode::Peek qw( hex2ascciiDecode ascii2hexEncode );
+    use Unicode::Peek qw( hex2ascciiDecode ascii2hexEncode );
 
-my $lanquage = 'Chinese';
+    my $lanquage = 'Chinese';
 
-my $str = '這是一個測試';
+    my $str = '這是一個測試';
 
-my @flags = ( 'UCS-2',
-    'UCS-2BE',
-    'UCS-2LE',
-    'UCS-4',
-    'UTF-7',
-    'utf8',
-    'UTF-8',
-    'utf-8-strict',
-    'UTF-16',
-    'UTF-16BE',
-    'UTF-16LE',
-    'UTF-32',
-    'UTF-32BE',
-    'UTF-32LE' );
+    my @flags = ( 'UCS-2',
+                  'UCS-2BE',
+                  'UCS-2LE',
+                  'UCS-4',
+                  'UTF-7',
+                  'utf8',
+                  'UTF-8',
+                  'utf-8-strict',
+                  'UTF-16',
+                  'UTF-16BE',
+                  'UTF-16LE',
+                  'UTF-32',
+                  'UTF-32BE',
+                  'UTF-32LE' );
 
-while ( defined ( my $flag = shift @flags ) ) {
-    my $hexEncoded = ascii2hexEncode($flag, $str);
-say hex2ascciiDecode($flag, $hexEncoded);
-};
+     while ( defined ( my $flag = shift @flags ) ) {
+         my $hexEncoded = ascii2hexEncode($flag, $str);
+         say hex2ascciiDecode($flag, $hexEncoded);
+     };
 
 
 =head1 DEPENDENCIES
