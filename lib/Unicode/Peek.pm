@@ -84,6 +84,8 @@ sub hex2ascciiDecode {
 
 __END__
 
+=pod
+
 =head1 NAME
 
     Unicode::Peek - Perl module supports different unicode(s) transformation
@@ -120,6 +122,7 @@ __END__
 
     my $ascciiCharacters   = hexDumperInput($unicodeFormat, \@hexFormattedOutput);
     ...
+
 
 =head1 DESCRIPTION
 
