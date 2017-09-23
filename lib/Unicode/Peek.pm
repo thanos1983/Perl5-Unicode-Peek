@@ -1,10 +1,14 @@
 package Unicode::Peek;
 
-use 5.013002;
+## Validate the version of Perl
+
+BEGIN { die 'Perl version 5.13.2 or greater is required' if ($] < 5.013002); }
+
 use strict;
 use warnings;
 
 require Exporter;
+use vars qw($VERSION @ISA @EXPORT_OK);
 
 our @ISA = qw(Exporter);
 
@@ -15,45 +19,153 @@ our @ISA = qw(Exporter);
 # This allows declaration	use Unicode::Peek ':all';
 # If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
 # will save memory.
-our %EXPORT_TAGS = ( 'all' => [ qw(
-	
-) ] );
+our %EXPORT_TAGS = ( 'all' => \@EXPORT_OK );
 
-our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
+our @EXPORT_OK = qw (
+    ascii2hexEncode
+    hex2ascciiDecode
+    hexDumperOutput
+    hexDumperInput
+    );
 
-our @EXPORT = qw(
-	
-);
+## Version of Unicode::Peek module
 
 our $VERSION = '0.01';
+$VERSION = eval $VERSION;
 
+## Load necessary modules
 
-# Preloaded methods go here.
+use utf8;
+use Encode qw(decode encode);
+
+binmode( STDOUT, ':utf8' ); # debuggin purposes
+
+sub _ascii2hex {
+    return unpack("H*", $_[0]);
+}
+
+sub _hex2ascii {
+    return pack("H*", $_[0]);
+}
+
+sub hexDumperOutput {
+    my ( $unicodeFormat , $data ) = @_;
+    my $hexString = ascii2hexEncode( $unicodeFormat , $data );
+    # trim leading and trailing white space
+    # split string every two characters
+    # join the splitted characters with white space
+    $hexString = join(' ', split(/(..)/, $hexString))
+	=~ s/^\s+|\s+$//r =~ y/ / /rs;
+    # insert new line character every 30 characters
+    # return join("\n", unpack('(A30)*', $hexString));
+    push my @aref, unpack('(A30)*', $hexString);
+    return \@aref;
+}
+
+sub hexDumperInput {
+    my ( $unicodeFormat , $arrayRef ) = @_;
+    my $hexString = join('', split(/ /, join('', @$arrayRef)));
+    return hex2ascciiDecode($unicodeFormat, $hexString);
+}
+
+sub ascii2hexEncode {
+    my ( $unicodeFormat , $data ) = @_;
+    my $hexString = encode( $unicodeFormat , $data );
+    return _ascii2hex( $hexString );
+}
+
+sub hex2ascciiDecode {
+    my ( $unicodeFormat , $data ) = @_;
+    my $hex2ascciiString = _hex2ascii( $data );
+    return decode( $unicodeFormat , $hex2ascciiString );
+}
 
 1;
+
 __END__
-# Below is stub documentation for your module. You'd better edit it!
 
 =head1 NAME
+Unicode::Peek - Perl module supports different unicode(s) transformation formats
+    to hex and vice versa.
 
-Unicode::Peek - Perl extension for blah blah blah
+
+=head1 VERSION
+Version 0.01
+
 
 =head1 SYNOPSIS
+The Unicode::Peek - Perl module provides to the user the ability to encode/
+ decode asccii strings in a variety of unicode transformations to hex and vice
+ versa. The user is able to take a peek in the hex data and see the formatted
+ output and also vise versa. The user can provided an array of data in a hex
+ format and convert it back to ascii.
 
-  use Unicode::Peek;
-  blah blah blah
+  use Unicode::Peek ( 'ascii2hexEncode', 'hex2ascciiDecode',
+                      'hexDumperOutput', 'hexDumperInput' );
+
+  my $hexEncoded         = ascii2hexEncode($unicodeFormat, $ascciiCharacters);
+  ...
+
+  my $ascciiCharacters   = hex2ascciiDecode($unicodeFormat, $hexEncoded);
+  ...
+
+  my @hexFormattedOutput = hexDumperOutput($unicodeFormat, $ascciiCharacters);
+  ...
+
+  my $ascciiCharacters   = hexDumperInput($unicodeFormat, \@hexFormattedOutput);
+  ...
 
 =head1 DESCRIPTION
 
-Stub documentation for Unicode::Peek, created by h2xs. It looks like the
-author of the extension was negligent enough to leave the stub
-unedited.
+This module exports four methods (ascii2hexEncode, hex2ascciiDecode, hexDumperOutput
+ and hexDumperInput). All methods support 14 different encoding and decoding formats.
+ The module has been tested with multiple languages with complex characters, but not
+ with all known languages in the planet. So far as many languages have been tested all
+ characters where encoded / decoded correctly.
 
-Blah blah blah.
 
 =head2 EXPORT
 
 None by default.
+
+The module can also export all methods by simple declaring all:
+
+  use Unicode::Peek ':all';
+
+
+=head1 SUPPORTED FORMATS
+
+=over 4
+
+=item * UCS-2
+
+=item * UCS-2BE
+
+=item * UCS-2LE
+
+=item * UCS-4
+
+=item * UTF-7
+
+=item * utf8
+
+=item * utf8-strict
+
+=item * UTF-8
+
+=item * UTF-16
+
+=item * UTF-16BE
+
+=item * UTF-16LE
+
+=item * UTF-32
+
+=item * UTF-32BE
+
+=item * UTF-32LE
+
+=back
 
 =head1 EXAMPLE 1 (hexDumperOutput)
 =encoding utf8
@@ -138,7 +250,7 @@ This example is for femonstration purposes, randomly choosen Chinese as a testin
 
 DEPENDENCIES
 
-The module is implemented by using utf8 and requires to be installed.
+The module is implemented by using utf8 and Encode, both module required to be installed.
 
 
 =head1 AUTHOR
