@@ -1,0 +1,6 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+t/Unicode-Peek.t
+lib/Unicode/Peek.pm
