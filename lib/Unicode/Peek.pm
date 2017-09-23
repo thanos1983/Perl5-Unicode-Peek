@@ -85,15 +85,18 @@ sub hex2ascciiDecode {
 __END__
 
 =head1 NAME
+
     Unicode::Peek - Perl module supports different unicode(s) transformation
     formats to hex and vice versa.
 
 
 =head1 VERSION
+
     Version 0.01
 
 
 =head1 SYNOPSIS
+
     The Unicode::Peek - Perl module provides to the user the ability to encode/
     decode asccii strings in a variety of unicode transformations to hex and vice
     versa. The user is able to take a peek in the hex data and see the formatted
@@ -119,6 +122,7 @@ __END__
     ...
 
 =head1 DESCRIPTION
+
     This module exports four methods (ascii2hexEncode, hex2ascciiDecode, hexDumperOutput
     and hexDumperInput). All methods support 14 different encoding and decoding formats.
     The module has been tested with multiple languages with complex characters, but not
@@ -127,6 +131,7 @@ __END__
 
 
 =head2 EXPORT
+
     None by default, but the module can also export all methods by simple declaring all:
 
     use Unicode::Peek ':all';
@@ -168,129 +173,137 @@ __END__
 
 =head1 EXAMPLE 1 (hexDumperOutput)
 =encoding utf8
+
     This example is for femonstration purposes, randomly choosen Chinese as a testing
     language. We will use the L<Data::Dumper|https://perldoc.perl.org/Data/Dumper.html> module to print the formated hex output. Necessary is also the L<utf8|https://perldoc.perl.org/utf8.html>
     for the stdout (convert the internal representation of a Perl scalar to/from UTF-8.)
 
-  #!/usr/bin/perl
-  use utf8;
-  use strict;
-  use warnings;
-  use Data::Dumper;
+    #!/usr/bin/perl
+    use utf8;
+use strict;
+use warnings;
+use Data::Dumper;
 
-  use Unicode::Peek qw( hexDumperOutput );
+use Unicode::Peek qw( hexDumperOutput );
 
-  my $lanquage = 'Chinese';
+my $lanquage = 'Chinese';
 
-  my $str = '這是一個測試';
+my $str = '這是一個測試';
 
-  my @flags = ( 'UCS-2',
-	        'UCS-2BE',
-	        'UCS-2LE',
-	        'UCS-4',
-	        'UTF-7',
-	        'utf8',
-	        'UTF-8',
-	        'utf-8-strict',
-	        'UTF-16',
-	        'UTF-16BE',
-	        'UTF-16LE',
-	        'UTF-32',
-	        'UTF-32BE',
-	        'UTF-32LE' );
+my @flags = ( 'UCS-2',
+    'UCS-2BE',
+    'UCS-2LE',
+    'UCS-4',
+    'UTF-7',
+    'utf8',
+    'UTF-8',
+    'utf-8-strict',
+    'UTF-16',
+    'UTF-16BE',
+    'UTF-16LE',
+    'UTF-32',
+    'UTF-32BE',
+    'UTF-32LE' );
 
-  while ( defined ( my $flag = shift @flags ) ) {
-      print Dumper hexDumperOutput($flag, $str);
-  };
+while ( defined ( my $flag = shift @flags ) ) {
+    print Dumper hexDumperOutput($flag, $str);
+};
 
 =head1 EXAMPLE 2 (hexDumperInput)
 
-  #!/usr/bin/perl
-  use utf8;
-  use strict;
-  use warnings;
-  use Data::Dumper;
-  use feature 'say';
+    #!/usr/bin/perl
+    use utf8;
+use strict;
+use warnings;
+use Data::Dumper;
+use feature 'say';
 
-  use Unicode::Peek qw( hexDumperOutput hexDumperInput );
+use Unicode::Peek qw( hexDumperOutput hexDumperInput );
 
-  my $lanquage = 'Chinese';
+my $lanquage = 'Chinese';
 
-  my $str = '這是一個測試';
+my $str = '這是一個測試';
 
-  my @flags = ( 'UCS-2',
-	        'UCS-2BE',
-	        'UCS-2LE',
-	        'UCS-4',
-	        'UTF-7',
-	        'utf8',
-	        'UTF-8',
-	        'utf-8-strict',
-	        'UTF-16',
-	        'UTF-16BE',
-	        'UTF-16LE',
-	        'UTF-32',
-	        'UTF-32BE',
-	        'UTF-32LE' );
+my @flags = ( 'UCS-2',
+    'UCS-2BE',
+    'UCS-2LE',
+    'UCS-4',
+    'UTF-7',
+    'utf8',
+    'UTF-8',
+    'utf-8-strict',
+    'UTF-16',
+    'UTF-16BE',
+    'UTF-16LE',
+    'UTF-32',
+    'UTF-32BE',
+    'UTF-32LE' );
 
-  while ( defined ( my $flag = shift @flags ) ) {
-      my $hexDumper = hexDumperOutput($flag, $str);
-      print Dumper $hexDumper;
-      say hexDumperInput($flag, $hexDumper);
-  };
+while ( defined ( my $flag = shift @flags ) ) {
+    my $hexDumper = hexDumperOutput($flag, $str);
+print Dumper $hexDumper;
+say hexDumperInput($flag, $hexDumper);
+};
 
 
 =head1 EXAMPLE 3 (hex2ascciiDecode ascii2hexEncode)
 
-  #!/usr/bin/perl
-  use utf8;
-  use strict;
-  use warnings;
-  use feature 'say';
+    #!/usr/bin/perl
+    use utf8;
+use strict;
+use warnings;
+use feature 'say';
 
-  use Unicode::Peek qw( hex2ascciiDecode ascii2hexEncode );
+use Unicode::Peek qw( hex2ascciiDecode ascii2hexEncode );
 
-  my $lanquage = 'Chinese';
+my $lanquage = 'Chinese';
 
-  my $str = '這是一個測試';
+my $str = '這是一個測試';
 
-  my @flags = ( 'UCS-2',
-	        'UCS-2BE',
-	        'UCS-2LE',
-	        'UCS-4',
-	        'UTF-7',
-	        'utf8',
-	        'UTF-8',
-	        'utf-8-strict',
-	        'UTF-16',
-	        'UTF-16BE',
-	        'UTF-16LE',
-	        'UTF-32',
-	        'UTF-32BE',
-	        'UTF-32LE' );
+my @flags = ( 'UCS-2',
+    'UCS-2BE',
+    'UCS-2LE',
+    'UCS-4',
+    'UTF-7',
+    'utf8',
+    'UTF-8',
+    'utf-8-strict',
+    'UTF-16',
+    'UTF-16BE',
+    'UTF-16LE',
+    'UTF-32',
+    'UTF-32BE',
+    'UTF-32LE' );
 
-  while ( defined ( my $flag = shift @flags ) ) {
-      my $hexEncoded = ascii2hexEncode($flag, $str);
-      say hex2ascciiDecode($flag, $hexEncoded);
-  };
+while ( defined ( my $flag = shift @flags ) ) {
+    my $hexEncoded = ascii2hexEncode($flag, $str);
+say hex2ascciiDecode($flag, $hexEncoded);
+};
 
 
-DEPENDENCIES
+=head1 DEPENDENCIES
+
     The module is implemented by using 'utf8' and 'Encode', both modules are
     mandatory as prerequisites and required to be pre-installed.
 
 
 =head1 AUTHOR
+
+=begin html
+
     Athanasios Garyfalos, E<lt>garyfalos@cpan.org<gt>
 
+=end html
 
 =head1 BUGS
+
     Please report any bugs or feature requests to C<bug-unicode-peek at rt.cpan.org>, or through
     the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Unicode-Peek>.  I will be notified, and then you'll
     automatically be notified of progress on your bug as I make changes.
 
 
 =head1 SUPPORT
+
     You can find documentation for the module with the perldoc command.
 
     perldoc Unicode::Peek
@@ -299,37 +312,73 @@ DEPENDENCIES
 =over 4
 
 =item * RT: CPAN's request tracker (report bugs here)
+
+=begin html
+
     L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Unicode-Peek>
 
+=end html
+
 =item * AnnoCPAN: Annotated CPAN documentation
+
+=begin html
+
     L<http://annocpan.org/dist/Unicode-Peek>
 
+=end html
+
 =item * CPAN Ratings
+
+=begin html
+
     L<http://cpanratings.perl.org/d/Unicode-Peek>
 
+=end html
+
 =item * Search CPAN
+
+=begin html
+
     L<http://search.cpan.org/dist/Unicode-Peek>
+
+=end html
 
 =back
 
 =head1 SEE ALSO
+
+=begin html
+
     perl, L<utf8|https://perldoc.perl.org/utf8.html>, L<UTF-8 vs. utf8 vs. UTF8|https://perldoc.perl.org/Encode.html#UTF-8-vs.-utf8-vs.-UTF8> and L<Data::Peek|http://search.cpan.org/~hmbrand/Data-Peek/Peek.pm>
 
+=end html
+
 =head1 REPOSITORY
+
+=begin html
+
     L<Perl5-Unicode-Peek|https://github.com/thanos1983/Perl5-Unicode-Peek>
+
+=end html
+
 
     This library is free software; you can redistribute it and/or modify it under
     the same terms as Perl itself.
 
 
 =head1 COPYRIGHT AND LICENSE
+
     Copyright (C) 2017 by Athanasios Garyfalos.
 
     This library is free software; you can redistribute it and/or modify it
     under the terms of the the Artistic License (2.0). You may obtain a
     copy of the full license at:
 
+=begin html
+
     L<http://www.perlfoundation.org/artistic_license_2_0>
+
+=end html
 
     Any use, modification, and distribution of the Standard or Modified
     Versions is governed by this Artistic License. By using, modifying or

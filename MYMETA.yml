@@ -1,5 +1,5 @@
 ---
-abstract: 'Perl module supports different unicode(s) transformation formats     to hex and vice versa.'
+abstract: unknown
 author:
   - 'Thanos <tinyos@>'
 build_requires:

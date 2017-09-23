@@ -482,7 +482,7 @@ realclean purge :: realclean_subdirs
 metafile : create_distdir
 	$(NOECHO) $(ECHO) Generating META.yml
 	$(NOECHO) $(ECHO) '---' > META_new.yml
-	$(NOECHO) $(ECHO) 'abstract: '\''Perl module supports different unicode(s) transformation formats     to hex and vice versa.'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) 'abstract: unknown' >> META_new.yml
 	$(NOECHO) $(ECHO) 'author:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  - '\''Thanos <tinyos@>'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'build_requires:' >> META_new.yml
@@ -506,7 +506,7 @@ metafile : create_distdir
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
 	$(NOECHO) $(ECHO) '{' > META_new.json
-	$(NOECHO) $(ECHO) '   "abstract" : "Perl module supports different unicode(s) transformation formats     to hex and vice versa.",' >> META_new.json
+	$(NOECHO) $(ECHO) '   "abstract" : "unknown",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "author" : [' >> META_new.json
 	$(NOECHO) $(ECHO) '      "Thanos <tinyos@>"' >> META_new.json
 	$(NOECHO) $(ECHO) '   ],' >> META_new.json
@@ -853,7 +853,7 @@ testdb_static :: static pure_all
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
 	$(NOECHO) $(ECHO) '<SOFTPKG NAME="Unicode-Peek" VERSION="0.01">' > Unicode-Peek.ppd
-	$(NOECHO) $(ECHO) '    <ABSTRACT>Perl module supports different unicode(s) transformation formats     to hex and vice versa.</ABSTRACT>' >> Unicode-Peek.ppd
+	$(NOECHO) $(ECHO) '    <ABSTRACT></ABSTRACT>' >> Unicode-Peek.ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>Thanos &lt;tinyos@&gt;</AUTHOR>' >> Unicode-Peek.ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> Unicode-Peek.ppd
 	$(NOECHO) $(ECHO) '        <ARCHITECTURE NAME="x86_64-linux-gnu-thread-multi-5.24" />' >> Unicode-Peek.ppd
