@@ -30,7 +30,7 @@ our @EXPORT_OK = qw (
 
 ## Version of Unicode::Peek module
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 $VERSION = eval $VERSION;
 
 ## Load necessary modules
@@ -70,8 +70,8 @@ sub hexDumperInput {
 
 sub ascii2hexEncode {
     my ( $unicodeFormat , $data ) = @_;
-    my $hexString = encode( $unicodeFormat , $data );
-    return _ascii2hex( $hexString );
+    my $octets = encode( $unicodeFormat , $data );
+    return _ascii2hex( $octets );
 }
 
 sub hex2ascciiDecode {
@@ -84,12 +84,10 @@ sub hex2ascciiDecode {
 
 __END__
 
-=pod
-
 =head1 NAME
 
-    Unicode::Peek - Perl module supports different unicode(s) transformation
-    formats to hex and vice versa.
+    Unicode::Peek - Perl module supports different unicode(s) transformation formats
+    to hex and vice versa.
 
 
 =head1 VERSION
@@ -126,7 +124,7 @@ __END__
 
 =head1 DESCRIPTION
 
-    This module exports four methods (ascii2hexEncode, hex2ascciiDecode, hexDumperOutput
+This module exports four methods (ascii2hexEncode, hex2ascciiDecode, hexDumperOutput
     and hexDumperInput). All methods support 14 different encoding and decoding formats.
     The module has been tested with multiple languages with complex characters, but not
     with all known languages in the planet. So far as many languages have been tested all
@@ -178,8 +176,8 @@ __END__
 
 =encoding utf8
 
-    This example is for femonstration purposes, randomly choosen Chinese as a testing
-    language. We will use the L<Data::Dumper|https://perldoc.perl.org/Data/Dumper.html> module to print the formated hex output. Necessary is also the L<utf8|https://perldoc.perl.org/utf8.html>
+These examples bellow is for demonstration purposes, randomly choosen Chinese as a testing
+    language. We will use the L<Data::Dumper|https://perldoc.perl.org/Data/Dumper.html> module to print the formated hex output. Necessary is also the L<utf8|https://perldoc.perl.org/utf8.html> 
     for the stdout (convert the internal representation of a Perl scalar to/from UTF-8.)
 
     #!/usr/bin/perl
@@ -287,21 +285,17 @@ __END__
 
 =head1 DEPENDENCIES
 
-    The module is implemented by using 'utf8' and 'Encode', both modules are
+The module is implemented by using 'utf8' and 'Encode', both modules are
     mandatory as prerequisites and required to be pre-installed.
 
 
 =head1 AUTHOR
 
-=begin html
-
     Athanasios Garyfalos, E<lt>garyfalos@cpan.org<gt>
-
-=end html
 
 =head1 BUGS
 
-    Please report any bugs or feature requests to C<bug-unicode-peek at rt.cpan.org>, or through
+Please report any bugs or feature requests to C<bug-unicode-peek at rt.cpan.org>, or through
     the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Unicode-Peek>.  I will be notified, and then you'll
     automatically be notified of progress on your bug as I make changes.
 
@@ -317,64 +311,42 @@ __END__
 
 =item * RT: CPAN's request tracker (report bugs here)
 
-=begin html
-
     L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Unicode-Peek>
-
-=end html
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
-=begin html
-
     L<http://annocpan.org/dist/Unicode-Peek>
 
-=end html
 
 =item * CPAN Ratings
 
-=begin html
-
     L<http://cpanratings.perl.org/d/Unicode-Peek>
 
-=end html
 
 =item * Search CPAN
 
-=begin html
-
     L<http://search.cpan.org/dist/Unicode-Peek>
-
-=end html
 
 =back
 
 =head1 SEE ALSO
 
-=begin html
-
     perl, L<utf8|https://perldoc.perl.org/utf8.html>, L<UTF-8 vs. utf8 vs. UTF8|https://perldoc.perl.org/Encode.html#UTF-8-vs.-utf8-vs.-UTF8> and L<Data::Peek|http://search.cpan.org/~hmbrand/Data-Peek/Peek.pm>
-
-=end html
 
 =head1 REPOSITORY
 
-=begin html
-
     L<Perl5-Unicode-Peek|https://github.com/thanos1983/Perl5-Unicode-Peek>
 
-=end html
 
-
-    This library is free software; you can redistribute it and/or modify it under
+This library is free software; you can redistribute it and/or modify it under
     the same terms as Perl itself.
 
 
 =head1 COPYRIGHT AND LICENSE
 
-    Copyright (C) 2017 by Athanasios Garyfalos.
+Copyright (C) 2017 by Athanasios Garyfalos.
 
-    This library is free software; you can redistribute it and/or modify it
+This library is free software; you can redistribute it and/or modify it
     under the terms of the the Artistic License (2.0). You may obtain a
     copy of the full license at:
 
@@ -384,19 +356,19 @@ __END__
 
 =end html
 
-    Any use, modification, and distribution of the Standard or Modified
+Any use, modification, and distribution of the Standard or Modified
     Versions is governed by this Artistic License. By using, modifying or
     distributing the Package, you accept this license. Do not use, modify,
     or distribute the Package, if you do not accept this license.
 
-    If your Modified Version has been derived from a Modified Version made
+If your Modified Version has been derived from a Modified Version made
     by someone other than you, you are nevertheless required to ensure that
     your Modified Version complies with the requirements of this license.
 
-    This license does not grant you the right to use any trademark, service
+This license does not grant you the right to use any trademark, service
     mark, tradename, or logo of the Copyright Holder.
 
-    This license includes the non-exclusive, worldwide, free-of-charge
+This license includes the non-exclusive, worldwide, free-of-charge
     patent license to make, have made, use, offer to sell, sell, import and
     otherwise transfer the Package with respect to any patent claims
     licensable by the Copyright Holder that are necessarily infringed by the
@@ -405,7 +377,7 @@ __END__
     direct or contributory patent infringement, then this Artistic License
     to you shall terminate on the date that such litigation is filed.
 
-    Disclaimer of Warranty: THE PACKAGE IS PROVIDED BY THE COPYRIGHT HOLDER
+Disclaimer of Warranty: THE PACKAGE IS PROVIDED BY THE COPYRIGHT HOLDER
     AND CONTRIBUTORS "AS IS' AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES.
     THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
     PURPOSE, OR NON-INFRINGEMENT ARE DISCLAIMED TO THE EXTENT PERMITTED BY
@@ -418,6 +390,6 @@ __END__
 =head1 CHANGE LOG
 
     $Log: Peek.pm,v $
-    Revision 0.01  2017/09/21 17:22:21 (UCT) Thanos
+    Revision 0.02  2017/09/24 09:22:21 (UCT) Thanos
 
 =cut
