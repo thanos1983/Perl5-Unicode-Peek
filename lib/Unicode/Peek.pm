@@ -34,11 +34,37 @@ our $VERSION = '0.03';
 $VERSION = eval $VERSION;
 
 ## Load necessary modules
-
 use utf8;
+use Carp;
+use feature 'say';
 use Encode qw(decode encode);
 
 binmode( STDOUT, ':utf8' ); # debuggin purposes
+
+use constant TRUE             => 1;
+use constant FALSE            => 0;
+
+my @unicodes = ( 'UCS-2',
+		 'UCS-2BE',
+		 'UCS-2LE',
+		 'UCS-4',
+		 'UTF-7',
+		 'utf8',
+		 'utf8-strict',
+		 'UTF-8',
+		 'UTF-16',
+		 'UTF-16BE',
+		 'UTF-16LE',
+		 'UTF-32',
+		 'UTF-32BE',
+		 'UTF-32LE' );
+
+sub _checkUnicode {
+    if (grep { /shift/ } @unicodes) {
+	return TRUE;
+    }
+    return FALSE;
+}
 
 sub _ascii2hex {
     return unpack("H*", $_[0]);
@@ -49,6 +75,7 @@ sub _hex2ascii {
 }
 
 sub hexDumperOutput {
+    croak "Unknown encoding '$_[0]'!" unless (_checkUnicode($_[0]));
     my ( $unicodeFormat , $data ) = @_;
     my $hexString = ascii2hexEncode( $unicodeFormat , $data );
     # trim leading and trailing white space
@@ -63,18 +90,21 @@ sub hexDumperOutput {
 }
 
 sub hexDumperInput {
+    croak "Unknown encoding '$_[0]'!" unless (_checkUnicode($_[0]));
     my ( $unicodeFormat , $arrayRef ) = @_;
     my $hexString = join('', split(/ /, join('', @$arrayRef)));
     return hex2ascciiDecode($unicodeFormat, $hexString);
 }
 
 sub ascii2hexEncode {
+    croak "Unknown encoding '$_[0]'!" unless (_checkUnicode($_[0]));
     my ( $unicodeFormat , $data ) = @_;
     my $octets = encode( $unicodeFormat , $data );
     return _ascii2hex( $octets );
 }
 
 sub hex2ascciiDecode {
+    croak "Unknown encoding '$_[0]'!" unless (_checkUnicode($_[0]));
     my ( $unicodeFormat , $data ) = @_;
     my $hex2ascciiString = _hex2ascii( $data );
     return decode( $unicodeFormat , $hex2ascciiString );
