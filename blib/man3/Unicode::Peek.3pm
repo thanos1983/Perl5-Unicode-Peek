@@ -67,7 +67,7 @@
 .\" ========================================================================
 .\"
 .IX Title "Unicode::Peek 3"
-.TH Unicode::Peek 3 "2017-09-24" "perl v5.24.1" "User Contributed Perl Documentation"
+.TH Unicode::Peek 3 "2017-09-26" "perl v5.24.1" "User Contributed Perl Documentation"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -80,7 +80,7 @@
 .SH "VERSION"
 .IX Header "VERSION"
 .Vb 1
-\&    Version 0.01
+\&    Version 0.05
 .Ve
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
@@ -113,7 +113,7 @@
 .IX Header "DESCRIPTION"
 This module exports four methods (ascii2hexEncode, hex2ascciiDecode, hexDumperOutput
     and hexDumperInput). All methods support 14 different encoding and decoding formats.
-    The module has been tested with multiple languages with complex characters, but not
+cd    The module has been tested with multiple languages with complex characters, but not
     with all known languages in the planet. So far as many languages have been tested all
     characters where encoded / decoded correctly.
 .SS "\s-1EXPORT\s0"
@@ -329,6 +329,10 @@ This library is free software; you can redistribute it and/or modify it
     under the terms of the the Artistic License (2.0). You may obtain a
     copy of the full license at:
 .PP
+.Vb 1
+\&    L<http://www.perlfoundation.org/artistic_license_2_0>
+.Ve
+.PP
 Any use, modification, and distribution of the Standard or Modified
     Versions is governed by this Artistic License. By using, modifying or
     distributing the Package, you accept this license. Do not use, modify,
@@ -362,5 +366,5 @@ Disclaimer of Warranty: \s-1THE PACKAGE IS PROVIDED BY THE COPYRIGHT HOLDER\s0
 .IX Header "CHANGE LOG"
 .Vb 2
 \&    $Log: Peek.pm,v $
-\&    Revision 0.02  2017/09/24 09:22:21 (UCT) Thanos
+\&    Revision 0.05  2017/09/26 12:13:21 (UCT) Thanos
 .Ve

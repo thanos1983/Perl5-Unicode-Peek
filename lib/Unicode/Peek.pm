@@ -30,7 +30,7 @@ our @EXPORT_OK = qw (
 
 ## Version of Unicode::Peek module
 
-our $VERSION = '0.03';
+our $VERSION = '0.05';
 $VERSION = eval $VERSION;
 
 ## Load necessary modules
@@ -41,16 +41,13 @@ use Encode qw(decode encode);
 
 binmode( STDOUT, ':utf8' ); # debuggin purposes
 
-use constant TRUE             => 1;
-use constant FALSE            => 0;
-
 my @unicodes = ( 'UCS-2',
 		 'UCS-2BE',
 		 'UCS-2LE',
 		 'UCS-4',
 		 'UTF-7',
 		 'utf8',
-		 'utf8-strict',
+		 'utf-8-strict',
 		 'UTF-8',
 		 'UTF-16',
 		 'UTF-16BE',
@@ -59,11 +56,14 @@ my @unicodes = ( 'UCS-2',
 		 'UTF-32BE',
 		 'UTF-32LE' );
 
-sub _checkUnicode {
-    if (grep { /shift/ } @unicodes) {
-	return TRUE;
-    }
-    return FALSE;
+sub _checkSubroutineParameters {
+    croak "Please pass only two parameters '@_'"
+	if scalar @_ != 2;
+
+    croak "Unknown encoding format '$_[0]'"
+	unless (grep { /$_[0]/ } @unicodes);
+
+    return $_[0], $_[1];
 }
 
 sub _ascii2hex {
@@ -75,8 +75,7 @@ sub _hex2ascii {
 }
 
 sub hexDumperOutput {
-    croak "Unknown encoding '$_[0]'!" unless (_checkUnicode($_[0]));
-    my ( $unicodeFormat , $data ) = @_;
+    my ( $unicodeFormat , $data ) = _checkSubroutineParameters(@_);
     my $hexString = ascii2hexEncode( $unicodeFormat , $data );
     # trim leading and trailing white space
     # split string every two characters
@@ -90,22 +89,19 @@ sub hexDumperOutput {
 }
 
 sub hexDumperInput {
-    croak "Unknown encoding '$_[0]'!" unless (_checkUnicode($_[0]));
-    my ( $unicodeFormat , $arrayRef ) = @_;
+    my ( $unicodeFormat , $arrayRef ) = _checkSubroutineParameters(@_);
     my $hexString = join('', split(/ /, join('', @$arrayRef)));
     return hex2ascciiDecode($unicodeFormat, $hexString);
 }
 
 sub ascii2hexEncode {
-    croak "Unknown encoding '$_[0]'!" unless (_checkUnicode($_[0]));
-    my ( $unicodeFormat , $data ) = @_;
+    my ( $unicodeFormat , $data ) = _checkSubroutineParameters(@_);
     my $octets = encode( $unicodeFormat , $data );
     return _ascii2hex( $octets );
 }
 
 sub hex2ascciiDecode {
-    croak "Unknown encoding '$_[0]'!" unless (_checkUnicode($_[0]));
-    my ( $unicodeFormat , $data ) = @_;
+    my ( $unicodeFormat , $data ) = _checkSubroutineParameters(@_);
     my $hex2ascciiString = _hex2ascii( $data );
     return decode( $unicodeFormat , $hex2ascciiString );
 }
@@ -122,7 +118,7 @@ __END__
 
 =head1 VERSION
 
-    Version 0.03
+    Version 0.05
 
 
 =head1 SYNOPSIS
@@ -156,7 +152,7 @@ __END__
 
 This module exports four methods (ascii2hexEncode, hex2ascciiDecode, hexDumperOutput
     and hexDumperInput). All methods support 14 different encoding and decoding formats.
-    The module has been tested with multiple languages with complex characters, but not
+cd    The module has been tested with multiple languages with complex characters, but not
     with all known languages in the planet. So far as many languages have been tested all
     characters where encoded / decoded correctly.
 
@@ -417,6 +413,6 @@ Disclaimer of Warranty: THE PACKAGE IS PROVIDED BY THE COPYRIGHT HOLDER
 =head1 CHANGE LOG
 
     $Log: Peek.pm,v $
-    Revision 0.03  2017/09/24 09:48:21 (UCT) Thanos
+    Revision 0.05  2017/09/26 12:13:21 (UCT) Thanos
 
 =cut
