@@ -18,4 +18,3 @@ t/11_UTF-32.t
 t/12_UTF-32BE.t
 t/13_UTF-32LE.t
 t/14_UTF8.t
-t/Unicode-Peek.t

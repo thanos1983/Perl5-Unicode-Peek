@@ -1,14 +1,32 @@
 use 5.013002;
+use strict;
 use ExtUtils::MakeMaker;
+use warnings FATAL => 'all';
 # See lib/ExtUtils/MakeMaker.pm for details of how to influence
 # the contents of the Makefile that is written.
 WriteMakefile(
     NAME              => 'Unicode::Peek',
+    AUTHOR            => q{Athanasios Garyfalos <garyfalos@cpan.org>},
     VERSION_FROM      => 'lib/Unicode/Peek.pm', # finds $VERSION, requires EU::MM from perl >= 5.5
-    PREREQ_PM         => {}, # e.g., Module::Name => 1.1
+    MIN_PERL_VERSION  => "5.013002",
+    VERSION_FROM      => 'lib/Unicode/Peek.pm', # retrieve version from module
     ABSTRACT_FROM     => 'lib/Unicode/Peek.pm', # retrieve abstract from module
-    AUTHOR            => 'Thanos <tinyos@>',
-    #LICENSE           => 'perl',
-    #Value must be from legacy list of licenses here
-    #http://search.cpan.org/perldoc?Module%3A%3ABuild%3A%3AAPI
+    PREREQ_PM => {
+        # your module's runtime dependencies
+    },
+    TEST_REQUIRES => {
+        'Test::Exception' => 0,
+    },
+    dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
+    clean => { FILES => 'Net-SNTP-Client-*' },
+    META_MERGE => {
+        'meta-spec' => { version => 07 },
+	    resources => {
+		repository => {
+		    type => 'git',
+		    url  => 'git@github.com:thanos1983/Perl5-Unicode-Peek.git',
+		    web  => 'https://github.com/thanos1983/Perl5-Unicode-Peek',
+		},
+	},
+    },
 );

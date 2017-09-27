@@ -67,7 +67,7 @@
 .\" ========================================================================
 .\"
 .IX Title "Unicode::Peek 3"
-.TH Unicode::Peek 3 "2017-09-26" "perl v5.24.1" "User Contributed Perl Documentation"
+.TH Unicode::Peek 3 "2017-09-27" "perl v5.24.1" "User Contributed Perl Documentation"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -80,7 +80,7 @@
 .SH "VERSION"
 .IX Header "VERSION"
 .Vb 1
-\&    Version 0.05
+\&    Version 0.06
 .Ve
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
@@ -90,6 +90,14 @@
 \&    versa. The user is able to take a peek in the hex data and see the formatted
 \&    output and also vise versa. The user can provided an array of data in a hex
 \&    format and convert it back to ascii. Perl version 5.13.2 or greater is required.
+.Ve
+.SH "ABSTRACT"
+.IX Header "ABSTRACT"
+.Vb 4
+\&    The module is able to encode/decode any kind of ascci character(s) for 14
+\&    different formats (e.g. utf8, UCS\-2 ...). It configured to produce also to
+\&    Dump Hexadecimal output and process Hexadecimal input. This feature was added
+\&    mainly for debbuging purposes.
 .Ve
 .SH "SUBROUTINES/METHODS"
 .IX Header "SUBROUTINES/METHODS"
@@ -275,7 +283,7 @@ The module is implemented by using 'utf8' and 'Encode', both modules are
 .SH "BUGS"
 .IX Header "BUGS"
 Please report any bugs or feature requests to \f(CW\*(C`bug\-unicode\-peek at rt.cpan.org\*(C'\fR, or through
-    the web interface at <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Unicode\-Peek>.  I will be notified, and then you'll
+    the web interface at Report Bug(s) <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Unicode-Peek>.  I will be notified, and then you'll
     automatically be notified of progress on your bug as I make changes.
 .SH "SUPPORT"
 .IX Header "SUPPORT"
@@ -287,37 +295,25 @@ Please report any bugs or feature requests to \f(CW\*(C`bug\-unicode\-peek at rt
 .IP "\(bu" 4
 \&\s-1RT: CPAN\s0's request tracker (report bugs here)
 .Sp
-.Vb 1
-\&    L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Unicode\-Peek>
-.Ve
+Request Tracker <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Unicode-Peek>
 .IP "\(bu" 4
 AnnoCPAN: Annotated \s-1CPAN\s0 documentation
 .Sp
-.Vb 1
-\&    L<http://annocpan.org/dist/Unicode\-Peek>
-.Ve
+Annotated \s-1CPAN\s0 documentation <http://annocpan.org/dist/Unicode-Peek>
 .IP "\(bu" 4
 \&\s-1CPAN\s0 Ratings
 .Sp
-.Vb 1
-\&    L<http://cpanratings.perl.org/d/Unicode\-Peek>
-.Ve
+\&\s-1CPAN\s0 Ratings <http://cpanratings.perl.org/d/Unicode-Peek>
 .IP "\(bu" 4
 Search \s-1CPAN\s0
 .Sp
-.Vb 1
-\&    L<http://search.cpan.org/dist/Unicode\-Peek>
-.Ve
+Unicode-Peek <http://search.cpan.org/dist/Unicode-Peek>
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-.Vb 1
-\&    perl, L<utf8|https://perldoc.perl.org/utf8.html>, L<UTF\-8 vs. utf8 vs. UTF8|https://perldoc.perl.org/Encode.html#UTF\-8\-vs.\-utf8\-vs.\-UTF8> and L<Data::Peek|http://search.cpan.org/~hmbrand/Data\-Peek/Peek.pm>
-.Ve
+perl, utf8 <https://perldoc.perl.org/utf8.html>, \s-1UTF\-8\s0 vs. utf8 vs. \s-1UTF8\s0 <https://perldoc.perl.org/Encode.html#UTF-8-vs.-utf8-vs.-UTF8> and Data::Peek <http://search.cpan.org/~hmbrand/Data-Peek/Peek.pm>
 .SH "REPOSITORY"
 .IX Header "REPOSITORY"
-.Vb 1
-\&    L<Perl5\-Unicode\-Peek|https://github.com/thanos1983/Perl5\-Unicode\-Peek>
-.Ve
+Perl5\-Unicode\-Peek <https://github.com/thanos1983/Perl5-Unicode-Peek>
 .PP
 This library is free software; you can redistribute it and/or modify it under
     the same terms as Perl itself.
@@ -366,5 +362,5 @@ Disclaimer of Warranty: \s-1THE PACKAGE IS PROVIDED BY THE COPYRIGHT HOLDER\s0
 .IX Header "CHANGE LOG"
 .Vb 2
 \&    $Log: Peek.pm,v $
-\&    Revision 0.05  2017/09/26 12:13:21 (UCT) Thanos
+\&    Revision 0.06  2017/09/27 12:13:21 (UCT) Thanos
 .Ve

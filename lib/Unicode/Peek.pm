@@ -30,7 +30,7 @@ our @EXPORT_OK = qw (
 
 ## Version of Unicode::Peek module
 
-our $VERSION = '0.05';
+our $VERSION = '0.07';
 $VERSION = eval $VERSION;
 
 ## Load necessary modules
@@ -118,7 +118,7 @@ __END__
 
 =head1 VERSION
 
-    Version 0.05
+    Version 0.07
 
 
 =head1 SYNOPSIS
@@ -128,6 +128,14 @@ __END__
     versa. The user is able to take a peek in the hex data and see the formatted
     output and also vise versa. The user can provided an array of data in a hex
     format and convert it back to ascii. Perl version 5.13.2 or greater is required.
+
+
+=head1 ABSTRACT
+
+    The module is able to encode/decode any kind of ascci character(s) for 14
+    different formats (e.g. utf8, UCS-2 ...). It configured to produce also to
+    Dump Hexadecimal output and process Hexadecimal input. This feature was added
+    mainly for debbuging purposes.
 
 
 =head1 SUBROUTINES/METHODS
@@ -322,7 +330,7 @@ The module is implemented by using 'utf8' and 'Encode', both modules are
 =head1 BUGS
 
 Please report any bugs or feature requests to C<bug-unicode-peek at rt.cpan.org>, or through
-    the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Unicode-Peek>.  I will be notified, and then you'll
+    the web interface at L<Report Bug(s)|http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Unicode-Peek>.  I will be notified, and then you'll
     automatically be notified of progress on your bug as I make changes.
 
 
@@ -337,31 +345,34 @@ Please report any bugs or feature requests to C<bug-unicode-peek at rt.cpan.org>
 
 =item * RT: CPAN's request tracker (report bugs here)
 
-    L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Unicode-Peek>
+L<Request Tracker|http://rt.cpan.org/NoAuth/Bugs.html?Dist=Unicode-Peek>
+
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
-    L<http://annocpan.org/dist/Unicode-Peek>
+L<Annotated CPAN documentation|http://annocpan.org/dist/Unicode-Peek>
 
 
 =item * CPAN Ratings
 
-    L<http://cpanratings.perl.org/d/Unicode-Peek>
+L<CPAN Ratings|http://cpanratings.perl.org/d/Unicode-Peek>
 
 
 =item * Search CPAN
 
-    L<http://search.cpan.org/dist/Unicode-Peek>
+L<Unicode-Peek|http://search.cpan.org/dist/Unicode-Peek>
+
 
 =back
 
 =head1 SEE ALSO
 
-    perl, L<utf8|https://perldoc.perl.org/utf8.html>, L<UTF-8 vs. utf8 vs. UTF8|https://perldoc.perl.org/Encode.html#UTF-8-vs.-utf8-vs.-UTF8> and L<Data::Peek|http://search.cpan.org/~hmbrand/Data-Peek/Peek.pm>
+perl, L<utf8|https://perldoc.perl.org/utf8.html>, L<UTF-8 vs. utf8 vs. UTF8|https://perldoc.perl.org/Encode.html#UTF-8-vs.-utf8-vs.-UTF8> and L<Data::Peek|http://search.cpan.org/~hmbrand/Data-Peek/Peek.pm>
+
 
 =head1 REPOSITORY
 
-    L<Perl5-Unicode-Peek|https://github.com/thanos1983/Perl5-Unicode-Peek>
+L<Perl5-Unicode-Peek|https://github.com/thanos1983/Perl5-Unicode-Peek>
 
 
 This library is free software; you can redistribute it and/or modify it under
@@ -413,6 +424,6 @@ Disclaimer of Warranty: THE PACKAGE IS PROVIDED BY THE COPYRIGHT HOLDER
 =head1 CHANGE LOG
 
     $Log: Peek.pm,v $
-    Revision 0.05  2017/09/26 12:13:21 (UCT) Thanos
+    Revision 0.07  2017/09/27 15:51:21 (UCT) Thanos
 
 =cut
