@@ -15,12 +15,12 @@ WriteMakefile(
         # your module's runtime dependencies
     },
     TEST_REQUIRES => {
-        'Test::Exception' => 0,
+        'Test::Fatal' => 0,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean => { FILES => 'Net-SNTP-Client-*' },
+    clean => { FILES => 'Unicode-Peek-*' },
     META_MERGE => {
-        'meta-spec' => { version => 07 },
+        'meta-spec' => { version => 8 },
 	    resources => {
 		repository => {
 		    type => 'git',

@@ -30,7 +30,7 @@ our @EXPORT_OK = qw (
 
 ## Version of Unicode::Peek module
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 $VERSION = eval $VERSION;
 
 ## Load necessary modules
@@ -118,7 +118,7 @@ __END__
 
 =head1 VERSION
 
-    Version 0.07
+    Version 0.08
 
 
 =head1 SYNOPSIS
@@ -387,7 +387,7 @@ This library is free software; you can redistribute it and/or modify it
     under the terms of the the Artistic License (2.0). You may obtain a
     copy of the full license at:
 
-    L<http://www.perlfoundation.org/artistic_license_2_0>
+L<http://www.perlfoundation.org/artistic_license_2_0>
 
 
 Any use, modification, and distribution of the Standard or Modified
@@ -424,6 +424,6 @@ Disclaimer of Warranty: THE PACKAGE IS PROVIDED BY THE COPYRIGHT HOLDER
 =head1 CHANGE LOG
 
     $Log: Peek.pm,v $
-    Revision 0.07  2017/09/27 15:51:21 (UCT) Thanos
+    Revision 0.08  2017/09/27 15:51:21 (UCT) Thanos
 
 =cut

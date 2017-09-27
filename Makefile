@@ -15,13 +15,13 @@
 #     AUTHOR => [q[Athanasios Garyfalos <garyfalos@cpan.org>]]
 #     BUILD_REQUIRES => {  }
 #     CONFIGURE_REQUIRES => {  }
-#     META_MERGE => { meta-spec=>{ version=>q[7] }, resources=>{ repository=>{ type=>q[git], url=>q[git@github.com:thanos1983/Perl5-Unicode-Peek.git], web=>q[https://github.com/thanos1983/Perl5-Unicode-Peek] } } }
+#     META_MERGE => { meta-spec=>{ version=>q[8] }, resources=>{ repository=>{ type=>q[git], url=>q[git@github.com:thanos1983/Perl5-Unicode-Peek.git], web=>q[https://github.com/thanos1983/Perl5-Unicode-Peek] } } }
 #     MIN_PERL_VERSION => q[5.013002]
 #     NAME => q[Unicode::Peek]
-#     PREREQ_PM => { Test::Exception=>q[0] }
-#     TEST_REQUIRES => { Test::Exception=>q[0] }
+#     PREREQ_PM => { Test::Fatal=>q[0] }
+#     TEST_REQUIRES => { Test::Fatal=>q[0] }
 #     VERSION_FROM => q[lib/Unicode/Peek.pm]
-#     clean => { FILES=>q[Net-SNTP-Client-*] }
+#     clean => { FILES=>q[Unicode-Peek-*] }
 #     dist => { COMPRESS=>q[gzip -9f], SUFFIX=>q[gz] }
 
 # --- MakeMaker post_initialize section:
@@ -61,11 +61,11 @@ DIRFILESEP = /
 DFSEP = $(DIRFILESEP)
 NAME = Unicode::Peek
 NAME_SYM = Unicode_Peek
-VERSION = 0.07
+VERSION = 0.08
 VERSION_MACRO = VERSION
-VERSION_SYM = 0_07
+VERSION_SYM = 0_08
 DEFINE_VERSION = -D$(VERSION_MACRO)=\"$(VERSION)\"
-XS_VERSION = 0.07
+XS_VERSION = 0.08
 XS_VERSION_MACRO = XS_VERSION
 XS_DEFINE_VERSION = -D$(XS_VERSION_MACRO)=\"$(XS_VERSION)\"
 INST_ARCHLIB = blib/arch
@@ -259,7 +259,7 @@ RCS_LABEL = rcs -Nv$(VERSION_SYM): -q
 DIST_CP = best
 DIST_DEFAULT = tardist
 DISTNAME = Unicode-Peek
-DISTVNAME = Unicode-Peek-0.07
+DISTVNAME = Unicode-Peek-0.08
 
 
 # --- MakeMaker macro section:
@@ -462,7 +462,7 @@ clean :: clean_subdirs
 	  pm_to_blib.ts so_locations \
 	  tmon.out 
 	- $(RM_RF) \
-	  Net-SNTP-Client-* blib 
+	  Unicode-Peek-* blib 
 	  $(NOECHO) $(RM_F) $(MAKEFILE_OLD)
 	- $(MV) $(FIRST_MAKEFILE) $(MAKEFILE_OLD) $(DEV_NULL)
 
@@ -491,7 +491,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '  - '\''Athanasios Garyfalos <garyfalos@cpan.org>'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'build_requires:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  ExtUtils::MakeMaker: '\''0'\''' >> META_new.yml
-	$(NOECHO) $(ECHO) '  Test::Exception: '\''0'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) '  Test::Fatal: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'configure_requires:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  ExtUtils::MakeMaker: '\''0'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'dynamic_config: 1' >> META_new.yml
@@ -508,7 +508,7 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) 'requires:' >> META_new.yml
 	$(NOECHO) $(ECHO) '  perl: '\''5.013002'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'resources: {}' >> META_new.yml
-	$(NOECHO) $(ECHO) 'version: '\''0.07'\''' >> META_new.yml
+	$(NOECHO) $(ECHO) 'version: '\''0.08'\''' >> META_new.yml
 	$(NOECHO) $(ECHO) 'x_serialization_backend: '\''CPAN::Meta::YAML version 0.018'\''' >> META_new.yml
 	-$(NOECHO) $(MV) META_new.yml $(DISTVNAME)/META.yml
 	$(NOECHO) $(ECHO) Generating META.json
@@ -551,13 +551,13 @@ metafile : create_distdir
 	$(NOECHO) $(ECHO) '      },' >> META_new.json
 	$(NOECHO) $(ECHO) '      "test" : {' >> META_new.json
 	$(NOECHO) $(ECHO) '         "requires" : {' >> META_new.json
-	$(NOECHO) $(ECHO) '            "Test::Exception" : "0"' >> META_new.json
+	$(NOECHO) $(ECHO) '            "Test::Fatal" : "0"' >> META_new.json
 	$(NOECHO) $(ECHO) '         }' >> META_new.json
 	$(NOECHO) $(ECHO) '      }' >> META_new.json
 	$(NOECHO) $(ECHO) '   },' >> META_new.json
 	$(NOECHO) $(ECHO) '   "release_status" : "stable",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "resources" : {},' >> META_new.json
-	$(NOECHO) $(ECHO) '   "version" : "0.07",' >> META_new.json
+	$(NOECHO) $(ECHO) '   "version" : "0.08",' >> META_new.json
 	$(NOECHO) $(ECHO) '   "x_serialization_backend" : "JSON::PP version 2.94"' >> META_new.json
 	$(NOECHO) $(ECHO) '}' >> META_new.json
 	-$(NOECHO) $(MV) META_new.json $(DISTVNAME)/META.json
@@ -867,7 +867,7 @@ testdb_static :: static pure_all
 # --- MakeMaker ppd section:
 # Creates a PPD (Perl Package Description) for a binary distribution.
 ppd :
-	$(NOECHO) $(ECHO) '<SOFTPKG NAME="Unicode-Peek" VERSION="0.07">' > Unicode-Peek.ppd
+	$(NOECHO) $(ECHO) '<SOFTPKG NAME="Unicode-Peek" VERSION="0.08">' > Unicode-Peek.ppd
 	$(NOECHO) $(ECHO) '    <ABSTRACT></ABSTRACT>' >> Unicode-Peek.ppd
 	$(NOECHO) $(ECHO) '    <AUTHOR>Athanasios Garyfalos &lt;garyfalos@cpan.org&gt;</AUTHOR>' >> Unicode-Peek.ppd
 	$(NOECHO) $(ECHO) '    <IMPLEMENTATION>' >> Unicode-Peek.ppd
