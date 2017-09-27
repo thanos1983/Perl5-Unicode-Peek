@@ -4,27 +4,30 @@ use utf8;
 use strict;
 use warnings;
 
-use Test::More tests => 10;
-BEGIN { use_ok('Test::Exception') };
+use Test::More tests => 9;
 BEGIN { use_ok('Unicode::Peek', qw( :all )) };
 
 #########################
 
-throws_ok { hexDumperOutput('Test', '這是一個測試') }
-	  qr/Unknown encoding format 'Test'/,
-	  'Check encoding formats hexDumperOutput';
+$@ = '';
+eval { hexDumperOutput('Test', '這是一個測試') };
+like( $@, qr/Unknown encoding format 'Test'/,
+      'Check encoding formats hexDumperOutput UCS-2LE' );
 
-throws_ok { hexDumperInput('Test', '這是一個測試') }
-	  qr/Unknown encoding format 'Test'/,
-	  'Check encoding formats hexDumperInput';
+$@ = '';
+eval { hexDumperInput('Test', '這是一個測試') };
+like( $@, qr/Unknown encoding format 'Test'/,
+      'Check encoding formats hexDumperInput UCS-2LE' );
 
-throws_ok { ascii2hexEncode('Test', '這是一個測試') }
-	  qr/Unknown encoding format 'Test'/,
-	  'Check encoding formats ascii2hexEncode';
+$@ = '';
+eval { ascii2hexEncode('Test', '這是一個測試') };
+like( $@, qr/Unknown encoding format 'Test'/,
+      'Check encoding formats ascii2hexEncode UCS-2LE' );
 
-throws_ok { hex2ascciiDecode('Test', '這是一個測試') }
-	  qr/Unknown encoding format 'Test'/,
-	  'Check encoding formats hex2ascciiDecode';
+$@ = '';
+eval { hex2ascciiDecode('Test', '這是一個測試') };
+like( $@, qr/Unknown encoding format 'Test'/,
+      'Check encoding formats hex2ascciiDecode UCS-2LE' );
 
 ok( ascii2hexEncode('UCS-2LE', '這是一個測試') eq
     '19902f66004e0b502c6e668a',
