@@ -30,7 +30,7 @@ our @EXPORT_OK = qw (
 
 ## Version of Unicode::Peek module
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 $VERSION = eval $VERSION;
 
 ## Load necessary modules
@@ -54,9 +54,17 @@ my @unicodes = ( 'UCS-2',
 		 'UTF-16LE',
 		 'UTF-32',
 		 'UTF-32BE',
-		 'UTF-32LE' );
+		 'UTF-32LE',
+		 'ISO-8859-1',
+		 'Windows-1251',
+		 'ascii',
+		 'cp1252'
+    );
 
 sub _checkSubroutineParameters {
+    croak "Enter a string for conversion ''"
+	if (not length $_[0] or not length $_[1]);
+
     croak "Please pass only two parameters '@_'"
 	if scalar @_ != 2;
 
@@ -424,6 +432,6 @@ Disclaimer of Warranty: THE PACKAGE IS PROVIDED BY THE COPYRIGHT HOLDER
 =head1 CHANGE LOG
 
     $Log: Peek.pm,v $
-    Revision 0.08  2017/09/27 15:51:21 (UCT) Thanos
+    Revision 0.09  2017/11/10 20:45:53 (UCT) Thanos
 
 =cut

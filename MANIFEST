@@ -18,3 +18,5 @@ t/11_UTF-32.t
 t/12_UTF-32BE.t
 t/13_UTF-32LE.t
 t/14_UTF8.t
+META.yml                                 Module YAML meta-data (added by MakeMaker)
+META.json                                Module JSON meta-data (added by MakeMaker)
